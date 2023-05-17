@@ -1,0 +1,25 @@
+[
+  {
+    "ine": "999999999XX",
+    "nom": "DUPONT",
+    "prenom": "Louis",
+    "dateNaissance": "2008-04-28",
+    "codeUai": "0000000X",
+    "niveau": "4221",
+    "libelleNiveau": "6EME",
+    "classe": "6EME1",
+    "codeSexe": "1",
+    "codeRegime": "0"
+  },
+  {
+    "ine": "999999999XX",
+    "nom": "DUPOND",
+    "prenom": "Loic",
+    "dateNaissance": "2007-03-19",
+    "codeUai": "0000000X",
+    "niveau": "1111",
+    "classe": "5EME2",
+    "codeSexe": "1",
+    "codeRegime": "1"
+  }
+]

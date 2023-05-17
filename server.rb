@@ -12,3 +12,7 @@ end
 get "/list-mefstats" do
   send_file "./data/en_n_mef_stat4_vu1_1_0-1.csv"
 end
+
+get "/sygne/" do
+  send_file "./data/sygne-students-for-uai.json"
+end
