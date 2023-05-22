@@ -6,6 +6,8 @@ require "factory_bot"
 require "faker"
 require "ostruct"
 
+Faker::Config.locale = :fr
+
 FactoryBot.define do
   factory :student, class: OpenStruct do # rubocop:disable Style/OpenStructUse
     ine { Faker::Number.number(digits: 10) }
