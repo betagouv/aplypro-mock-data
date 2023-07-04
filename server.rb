@@ -24,3 +24,11 @@ end
 get "/sygne/generated/:uai" do |uai|
   json FactoryBot.build_list(:student, 40, codeUai: uai).map(&:to_h)
 end
+
+post "/sygne/token" do
+  json(
+    expires_in: 600,
+    token_type: "Bearer",
+    access_token: "some token"
+  )
+end
