@@ -16,7 +16,7 @@ FactoryBot.define do
     dateNaissance { Faker::Date.between(from: 20.years.ago, to: 16.years.ago) }
     codeSexe { [0, 1].sample }
     niveau { 2122 } # { Faker::Number.within(range: 3000..4000) }
-    mef { }
+    mef { "2212421011" }
     libelleNiveau { %w[3EME 2NDE 1ERE].sample }
     classe { %w[3EME2 2NDE6 1EREB 1EREA].sample }
     codeRegime { "" }
