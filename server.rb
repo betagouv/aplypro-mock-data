@@ -8,12 +8,13 @@ require_relative "factories/api_student"
 
 set :bind, "0.0.0.0"
 set :logging, true
+set :strict_paths, false
 
 get "/sygne/" do
   send_file "./data/sygne-students-for-uai.json"
 end
 
-get "/sygne/generated/:uai" do |uai|
+get "/sygne/v1/etablissements/*/eleves" do |uai|
   json FactoryBot.build_list(:sygne_student, 40, codeUai: uai, mef: "2212421011").map(&:to_h)
 end
 
