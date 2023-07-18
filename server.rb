@@ -14,7 +14,7 @@ get "/sygne/" do
 end
 
 get "/sygne/generated/:uai" do |uai|
-  json FactoryBot.build_list(:sygne_student, 40, codeUai: uai).map(&:to_h)
+  json FactoryBot.build_list(:sygne_student, 40, codeUai: uai, mef: "2212421011").map(&:to_h)
 end
 
 get "/sygne/generated/irrelevant_mefs" do |uai|
