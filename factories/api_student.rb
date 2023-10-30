@@ -17,8 +17,8 @@ FactoryBot.define do
     codeSexe { [0, 1].sample }
     niveau { "2212" }
     codeMef { "24720008310" }
-    libelleNiveau { %w[3EME 2NDE 1ERE].sample }
-    classe { %w[3EME2 2NDE6 1EREB 1EREA].sample }
+    libelleNiveau { %w[2NDE 1ERE].sample }
+    classe { %w[2NDE6 1EREB 1EREA].sample }
     codeRegime { "" }
     codeUai { "uai" }
   end
