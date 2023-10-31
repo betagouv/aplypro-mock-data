@@ -25,6 +25,10 @@ FactoryBot.define do
     trait :gone do
       classe { nil }
     end
+
+    trait :no_ine do
+      ine { nil }
+    end
   end
 end
 
@@ -61,6 +65,14 @@ FactoryBot.define do
       sectionReference do
         {
           "codeMef" => "123123"
+        }
+      end
+    end
+
+    trait :no_ine do
+      apprenant do
+        {
+          "ine" => nil
         }
       end
     end
