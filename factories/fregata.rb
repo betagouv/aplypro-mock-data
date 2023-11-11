@@ -10,6 +10,7 @@ require "ostruct"
 FactoryBot.define do
   factory :fregata_student, class: OpenStruct do # rubocop:disable Style/OpenStructUse
     id { Faker::Number.number }
+    dateSortieEtablissement { left_at }
     division do
       {
         "libelle" => classe_label
@@ -25,8 +26,7 @@ FactoryBot.define do
         "prenomUsuel" => Faker::Name.first_name,
         "nomUsuel" => Faker::Name.last_name,
         "dateNaissance" => Faker::Date.between(from: 20.years.ago, to: 16.years.ago).to_s,
-        "ine" => ine,
-        "dateSortieEtablissement" => left_at
+        "ine" => ine
       }
     end
 
