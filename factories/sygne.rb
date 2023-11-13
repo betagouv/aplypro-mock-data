@@ -40,11 +40,15 @@ FactoryBot.define do
     prenom3 { Faker::Name.first_name }
     nomUsage { Faker::Name.last_name }
     dateNaissance { Faker::Date.between(from: 20.years.ago, to: 16.years.ago).to_s }
-    adresseLigne1 { Faker::Address.street_name }
-    adresseLigne2 { Faker::Address.street_name }
-    adresseLigne3 { Faker::Address.street_name }
-    adresseLigne4 { Faker::Address.street_name }
-    codePostal    { Faker::Address.zip_code }
-    libelleCommune { Faker::Address.city }
+    adrResidenceEle do
+      {
+        "adresseLigne1" => Faker::Address.street_name,
+        "adresseLigne2" => Faker::Address.street_name,
+        "adresseLigne3" => Faker::Address.street_name,
+        "adresseLigne4" => Faker::Address.street_name,
+        "codePostal" =>  Faker::Address.zip_code,
+        "libelleCommune" => Faker::Address.city
+      }
+    end
   end
 end

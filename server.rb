@@ -22,10 +22,6 @@ get "/sygne/v1/eleves/*" do |ine|
   json FactoryBot.build(:sygne_student_info, ine: ine).to_h
 end
 
-get "/sygne/generated/irrelevant_mefs" do |uai|
-  json FactoryBot.build_list(:student, 40, codeUai: uai, niveau: "1111").map(&:to_h)
-end
-
 get "/fregata/inscriptions" do
   send_file "./data/fregata-students.json"
 end
