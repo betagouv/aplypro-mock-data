@@ -11,6 +11,8 @@ FactoryBot.define do
   factory :fregata_student, class: OpenStruct do # rubocop:disable Style/OpenStructUse
     id { Faker::Number.number }
     dateSortieEtablissement { left_at }
+    dateSortieFormation { left_classe_at }
+
     division do
       {
         "libelle" => classe_label
@@ -34,6 +36,10 @@ FactoryBot.define do
       left_at { Date.yesterday.to_s }
     end
 
+    trait :changed_class do
+      left_classe_at { Date.yesterday.to_s }
+    end
+
     trait :irrelevant do
       sectionReference do
         {
@@ -52,6 +58,7 @@ FactoryBot.define do
 
     transient do
       left_at { nil }
+      left_classe_at { nil }
 
       ine { Faker::Number.number(digits: 10).to_s }
 
