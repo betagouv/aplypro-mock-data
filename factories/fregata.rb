@@ -8,7 +8,7 @@ require "ostruct"
 
 # rubocop:disable Metrics/BlockLength
 FactoryBot.define do
-  factory :fregata_student, class: OpenStruct do # rubocop:disable Style/OpenStructUse
+  factory :fregata_student, parent: :json_factory do
     id { Faker::Number.number }
     dateSortieEtablissement { left_at }
     dateSortieFormation { left_classe_at }

@@ -9,7 +9,7 @@ require "ostruct"
 Faker::Config.locale = :fr
 
 FactoryBot.define do
-  factory :sygne_student, class: OpenStruct do # rubocop:disable Style/OpenStructUse
+  factory :sygne_student, parent: :json_factory do
     ine { Faker::Alphanumeric.alphanumeric(number: 10).upcase }
     prenom { Faker::Name.first_name }
     nom { Faker::Name.last_name }
@@ -33,7 +33,7 @@ FactoryBot.define do
 end
 
 FactoryBot.define do
-  factory :sygne_student_info, class: OpenStruct do # rubocop:disable Style/OpenStructUse
+  factory :sygne_student_info, parent: :json_factory do
     ine { Faker::Alphanumeric.alphanumeric(number: 10).upcase }
     prenom1 { Faker::Name.first_name }
     prenom2 { Faker::Name.first_name }
