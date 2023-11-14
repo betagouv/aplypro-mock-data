@@ -46,7 +46,7 @@ FactoryBot.define do
         "adresseLigne2" => Faker::Address.street_name,
         "adresseLigne3" => Faker::Address.street_name,
         "adresseLigne4" => Faker::Address.street_name,
-        "codePostal" =>  Faker::Address.zip_code,
+        "codePostal" => Faker::Address.zip_code,
         "libelleCommune" => Faker::Address.city
       }
     end
