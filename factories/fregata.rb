@@ -31,6 +31,24 @@ FactoryBot.define do
         "ine" => ine
       }
     end
+    adressesApprenant do
+      [
+        {
+          "estPrioritaire" => true,
+          "adresseIndividu" => {
+            "ligne2" => "80 RUE DU TEST",
+            "ligne3" => nil,
+            "ligne4" => nil,
+            "ligne5" => nil,
+            "ligne6" => "34080 MONTPELLIER",
+            "ligne7" => "FRANCE",
+            "communeCodePostal" => "34080",
+            "communeCodeInsee" => "34172",
+            "paysCodeInsee" => "99100"
+          }
+        }
+      ]
+    end
 
     trait :gone do
       left_at { Date.yesterday.to_s }
