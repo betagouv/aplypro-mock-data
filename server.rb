@@ -3,6 +3,7 @@
 require "json"
 require "sinatra"
 require "sinatra/json"
+require "factory_bot"
 
 require_relative "factories/api_student"
 
@@ -15,11 +16,11 @@ get "/sygne/" do
 end
 
 get "/sygne/v1/etablissements/*/eleves" do |uai|
-  json FactoryBot.build_list(:sygne_student, 40, codeUai: uai, mef: "2212421011").map(&:to_h)
+  json FactoryBot.build_list(:sygne_student, 40, codeUai: uai, mef: "2212421011")
 end
 
 get "/sygne/v1/eleves/*" do |ine|
-  json FactoryBot.build(:sygne_student_info, ine: ine).to_h
+  json FactoryBot.build(:sygne_student_info, ine: ine)
 end
 
 get "/fregata/inscriptions" do
