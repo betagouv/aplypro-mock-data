@@ -47,29 +47,29 @@
       "paysCodeInsee": "99100",
       "communeAssimileeId": null,
       "estResponsable": false,
-      "cycleCode": "T"
-    },
-    "adressesApprenant": [
-      {
-        "id": "0-1-2-3-3",
-        "estPrioritaire": true,
-        "description": null,
-        "apprenantId": 42,
-        "adresseIndividuId": 4242,
-        "adresseIndividu": {
-          "id": 4242,
-          "ligne2": "80 RUE DU TEST",
-          "ligne3": null,
-          "ligne4": null,
-          "ligne5": null,
-          "ligne6": "34080 MONTPELLIER",
-          "ligne7": "FRANCE",
-          "communeCodePostal": "34080",
-          "communeCodeInsee": "34172",
-          "paysCodeInsee": "99100"
+      "cycleCode": "T",
+      "adressesApprenant": [
+        {
+          "id": "0-1-2-3-3",
+          "estPrioritaire": true,
+          "description": null,
+          "apprenantId": 42,
+          "adresseIndividuId": 4242,
+          "adresseIndividu": {
+            "id": 4242,
+            "ligne2": "80 RUE DU TEST",
+            "ligne3": null,
+            "ligne4": null,
+            "ligne5": null,
+            "ligne6": "34080 MONTPELLIER",
+            "ligne7": "FRANCE",
+            "communeCodePostal": "34080",
+            "communeCodeInsee": "34172",
+            "paysCodeInsee": "99100"
+          }
         }
-      }
-    ],
+      ]
+    },
     "cycleCode": "T",
     "motifSortie": null,
     "statutApprenant": {
