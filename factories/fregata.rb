@@ -29,24 +29,12 @@ FactoryBot.define do
         "nomUsuel" => Faker::Name.last_name,
         "dateNaissance" => Faker::Date.between(from: 20.years.ago, to: 16.years.ago).to_s,
         "ine" => ine,
-        "adressesApprenant" =>
-        [
-          {
-            "estPrioritaire" => true,
-            "adresseIndividu" => {
-              "ligne2" => "80 RUE DU TEST",
-              "ligne3" => nil,
-              "ligne4" => nil,
-              "ligne5" => nil,
-              "ligne6" => "34080 MONTPELLIER",
-              "ligne7" => "FRANCE",
-              "communeCodePostal" => "34080",
-              "communeCodeInsee" => "34172",
-              "paysCodeInsee" => "99100"
-            }
-          }
-        ]
+        "adressesApprenant" => adressesApprenant
       }
+    end
+
+    trait :no_addresses do
+      adressesApprenant { nil }
     end
 
     trait :gone do
@@ -82,6 +70,25 @@ FactoryBot.define do
           "1ERE CONDUITE PRODUCTION",
           "1ERE CONSEIL VENTE"
         ].sample
+      end
+
+      adressesApprenant do
+        [
+          {
+            "estPrioritaire" => true,
+            "adresseIndividu" => {
+              "ligne2" => "80 RUE DU TEST",
+              "ligne3" => nil,
+              "ligne4" => nil,
+              "ligne5" => nil,
+              "ligne6" => "34080 MONTPELLIER",
+              "ligne7" => "FRANCE",
+              "communeCodePostal" => "34080",
+              "communeCodeInsee" => "34172",
+              "paysCodeInsee" => "99100"
+            }
+          }
+        ]
       end
     end
   end
