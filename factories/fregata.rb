@@ -37,11 +37,12 @@ FactoryBot.define do
       adressesApprenant { nil }
     end
 
-    trait :gone do
+    trait :left_establishment do
       left_at { Date.yesterday.to_s }
     end
 
     trait :changed_class do
+      classe_label { "NOUVELLE CLASSE #{rand}" }
       left_classe_at { Date.yesterday.to_s }
     end
 

@@ -22,8 +22,12 @@ FactoryBot.define do
     codeRegime { "" }
     codeUai { "uai" }
 
-    trait :gone do
+    trait :left_establishment do
       classe { nil }
+    end
+
+    trait :changed_class do
+      classe { "NOUVELLE CLASSE #{rand}" }
     end
 
     trait :no_ine do
