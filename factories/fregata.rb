@@ -41,9 +41,12 @@ FactoryBot.define do
       left_at { Date.yesterday.to_s }
     end
 
+    trait :left_classe do
+      left_classe_at { Date.yesterday.to_s }
+    end
+
     trait :changed_class do
       classe_label { "NOUVELLE CLASSE #{rand}" }
-      left_classe_at { Date.yesterday.to_s }
     end
 
     trait :irrelevant do
