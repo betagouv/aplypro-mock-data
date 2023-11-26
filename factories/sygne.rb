@@ -6,8 +6,7 @@ require "factory_bot"
 require "faker"
 require "ostruct"
 
-Faker::Config.locale = :fr
-
+# rubocop:disable Metrics/BlockLength
 FactoryBot.define do
   factory :sygne_student, parent: :json_factory do
     ine { Faker::Alphanumeric.alphanumeric(number: 10).upcase }
@@ -38,6 +37,10 @@ FactoryBot.define do
     transient do
       mef { "24720008310" }
     end
+
+    trait :irrelevant do
+      mef { "123123" }
+    end
   end
 end
 
@@ -63,3 +66,4 @@ FactoryBot.define do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength
