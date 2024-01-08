@@ -12,7 +12,7 @@ FactoryBot.define do
     prenom { first_name }
     nom { last_name }
     dateNaissance { birthdate }
-    codeSexe { [0, 1].sample }
+    codeSexe { biological_sex }
     niveau { "2212" }
     codeMef { "24720008ABC" }
     codeMefRatt { mef }
@@ -42,6 +42,7 @@ end
 FactoryBot.define do
   factory :sygne_student_info, parent: :api_student do
     ine { ine_value }
+    codeSexe { biological_sex }
     prenom1 { first_name }
     prenom2 { Faker::Name.first_name }
     prenom3 { Faker::Name.first_name }

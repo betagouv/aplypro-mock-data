@@ -31,7 +31,8 @@ FactoryBot.define do
         "ine" => ine_value,
         "adressesApprenant" => adressesApprenant,
         "communeCodeInsee" => birthplace_city_insee_code,
-        "paysCodeInsee" => birthplace_country_insee_code
+        "paysCodeInsee" => birthplace_country_insee_code,
+        "sexeId" => biological_sex
       }
     end
 
