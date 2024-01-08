@@ -8,7 +8,7 @@ require "ostruct"
 
 # rubocop:disable Metrics/BlockLength
 FactoryBot.define do
-  factory :fregata_student, parent: :json_factory do
+  factory :fregata_student, parent: :api_student do
     id { Faker::Number.number }
     dateSortieEtablissement { left_at&.to_date }
     dateSortieFormation { left_classe_at&.to_date }
@@ -25,13 +25,13 @@ FactoryBot.define do
     end
     apprenant do
       {
-        "prenomUsuel" => Faker::Name.first_name,
-        "nomUsuel" => Faker::Name.last_name,
-        "dateNaissance" => Faker::Date.between(from: 20.years.ago, to: 16.years.ago).to_s,
-        "ine" => ine,
+        "prenomUsuel" => first_name,
+        "nomUsuel" => last_name,
+        "dateNaissance" => birthdate,
+        "ine" => ine_value,
         "adressesApprenant" => adressesApprenant,
-        "communeCodeInsee" => "34000",
-        "paysCodeInsee" => "99100"
+        "communeCodeInsee" => birthplace_city_insee_code,
+        "paysCodeInsee" => birthplace_country_insee_code
       }
     end
 
@@ -59,15 +59,9 @@ FactoryBot.define do
       end
     end
 
-    trait :no_ine do
-      ine { nil }
-    end
-
     transient do
       left_at { nil }
       left_classe_at { nil }
-
-      ine { Faker::Number.number(digits: 10).to_s }
 
       classe_label do
         [
@@ -83,15 +77,15 @@ FactoryBot.define do
           {
             "estPrioritaire" => true,
             "adresseIndividu" => {
-              "ligne2" => "80 RUE DU TEST",
-              "ligne3" => nil,
+              "ligne2" => address_line1,
+              "ligne3" => address_line2,
               "ligne4" => nil,
               "ligne5" => nil,
               "ligne6" => "34080 MONTPELLIER",
               "ligne7" => "FRANCE",
-              "communeCodePostal" => "34080",
-              "communeCodeInsee" => "34172",
-              "paysCodeInsee" => "99100"
+              "communeCodePostal" => address_postal_code,
+              "communeCodeInsee" => address_city_insee_code,
+              "paysCodeInsee" => address_country_code
             }
           }
         ]
