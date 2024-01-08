@@ -20,7 +20,7 @@ get "/sygne/v1/etablissements/*/eleves" do |uai|
 end
 
 get "/sygne/v1/eleves/*" do |ine|
-  json FactoryBot.build(:sygne_student_info, ine: ine)
+  json FactoryBot.build(:sygne_student_info, ine_value: ine)
 end
 
 get "/fregata/inscriptions" do
