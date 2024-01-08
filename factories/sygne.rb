@@ -64,6 +64,8 @@ FactoryBot.define do
         "codePays" => Faker::Number.number(digits: 3).to_s
       }
     end
+    inseeCommuneNaissance { "123" }
+    inseePaysNaissance { "456" }
   end
 end
 # rubocop:enable Metrics/BlockLength

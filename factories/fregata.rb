@@ -10,8 +10,8 @@ require "ostruct"
 FactoryBot.define do
   factory :fregata_student, parent: :json_factory do
     id { Faker::Number.number }
-    dateSortieEtablissement { left_at }
-    dateSortieFormation { left_classe_at }
+    dateSortieEtablissement { left_at&.to_date }
+    dateSortieFormation { left_classe_at&.to_date }
 
     division do
       {
@@ -29,7 +29,9 @@ FactoryBot.define do
         "nomUsuel" => Faker::Name.last_name,
         "dateNaissance" => Faker::Date.between(from: 20.years.ago, to: 16.years.ago).to_s,
         "ine" => ine,
-        "adressesApprenant" => adressesApprenant
+        "adressesApprenant" => adressesApprenant,
+        "communeCodeInsee" => "34000",
+        "paysCodeInsee" => "99100"
       }
     end
 
