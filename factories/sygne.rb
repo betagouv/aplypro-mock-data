@@ -12,7 +12,7 @@ FactoryBot.define do
     prenom { first_name }
     nom { last_name }
     dateNaissance { birthdate }
-    codeSexe { biological_sex }
+    codeSexe { [0, 1].sample }
     niveau { "2212" }
     codeMef { "24720008ABC" }
     codeMefRatt { mef }
