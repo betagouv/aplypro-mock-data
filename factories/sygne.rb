@@ -6,14 +6,13 @@ require "factory_bot"
 require "faker"
 require "ostruct"
 
-# rubocop:disable Metrics/BlockLength
 FactoryBot.define do
-  factory :sygne_student, parent: :json_factory do
-    ine { Faker::Alphanumeric.alphanumeric(number: 10).upcase }
-    prenom { Faker::Name.first_name }
-    nom { Faker::Name.last_name }
-    dateNaissance { Faker::Date.between(from: 20.years.ago, to: 16.years.ago).to_s }
-    codeSexe { [0, 1].sample }
+  factory :sygne_student, parent: :api_student do
+    ine { ine_value }
+    prenom { first_name }
+    nom { last_name }
+    dateNaissance { birthdate }
+    codeSexe { biological_sex }
     niveau { "2212" }
     codeMef { "24720008ABC" }
     codeMefRatt { mef }
@@ -30,10 +29,6 @@ FactoryBot.define do
       classe { "NOUVELLE CLASSE #{rand}" }
     end
 
-    trait :no_ine do
-      ine { nil }
-    end
-
     transient do
       mef { "24720008310" }
     end
@@ -45,27 +40,26 @@ FactoryBot.define do
 end
 
 FactoryBot.define do
-  factory :sygne_student_info, parent: :json_factory do
-    ine { Faker::Alphanumeric.alphanumeric(number: 10).upcase }
-    prenom1 { Faker::Name.first_name }
+  factory :sygne_student_info, parent: :api_student do
+    ine { ine_value }
+    prenom1 { first_name }
     prenom2 { Faker::Name.first_name }
     prenom3 { Faker::Name.first_name }
-    nomUsage { Faker::Name.last_name }
-    dateNaissance { Faker::Date.between(from: 20.years.ago, to: 16.years.ago).to_s }
+    nomUsage { last_name }
+    dateNaissance { birthdate }
     adrResidenceEle do
       {
-        "adresseLigne1" => Faker::Address.street_name,
-        "adresseLigne2" => Faker::Address.street_name,
+        "adresseLigne1" => address_line1,
+        "adresseLigne2" => address_line2,
         "adresseLigne3" => Faker::Address.street_name,
         "adresseLigne4" => Faker::Address.street_name,
-        "codePostal" => Faker::Address.zip_code,
-        "libelleCommune" => Faker::Address.city,
-        "codeCommuneInsee" => Faker::Number.number(digits: 4).to_s,
-        "codePays" => Faker::Number.number(digits: 3).to_s
+        "codePostal" => address_postal_code,
+        "libelleCommune" => address_city,
+        "codeCommuneInsee" => address_city_insee_code,
+        "codePays" => address_country_code
       }
     end
-    inseeCommuneNaissance { "123" }
-    inseePaysNaissance { "456" }
+    inseeCommuneNaissance { birthplace_city_insee_code }
+    inseePaysNaissance { birthplace_country_insee_code }
   end
 end
-# rubocop:enable Metrics/BlockLength
