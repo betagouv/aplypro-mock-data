@@ -16,7 +16,7 @@ get "/sygne/" do
 end
 
 get "/sygne/v1/etablissements/*/eleves" do |uai|
-  json FactoryBot.build_list(:sygne_student, 40, codeUai: uai, mef: "2212421011")
+  json FactoryBot.build_list(:sygne_student, 40, codeUai: uai)
 end
 
 get "/sygne/v1/eleves/*" do |ine|
