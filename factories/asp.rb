@@ -14,11 +14,13 @@ require "factory_bot"
 #
 # This will use the request object to generate the corresponding CSV
 # return file in the `mock/asp/retour` folder.
+
+WRITE_FOLDER = File.join(File.dirname(__FILE__), "../asp/retour/")
+
 FactoryBot.define do
   factory :csv_factory, class: "CSV" do
     transient do
       payment_request { nil }
-      destination { File.join(File.dirname(__FILE__), "../asp/retour/") }
     end
 
     initialize_with do
@@ -34,7 +36,7 @@ FactoryBot.define do
 
       filename = File.basename(request.file.blob.filename.to_s, ".*")
 
-      File.write(File.join(ctx.destination, "#{ctx.prefix}#{filename}.csv"), obj)
+      File.write(File.join(WRITE_FOLDER, "#{ctx.prefix}#{filename}.csv"), obj)
     end
   end
 end
@@ -68,5 +70,43 @@ FactoryBot.define do
     add_attribute("idPretaDoss") { Faker::Number.number(digits: 5).to_s }
     add_attribute("numAdmPrestaDoss") { Faker::Number.number(digits: 5).to_s }
     add_attribute("idIndPrestaDoss") { Faker::Number.number(digits: 5).to_s }
+  end
+end
+
+FactoryBot.define do
+  factory :asp_payment_return, class: "String" do
+    transient do
+      builder_class { Nokogiri::XML::Builder }
+      payment_request { nil }
+    end
+
+    trait :success do
+      payment_state { "PAYE" }
+    end
+
+    trait :failed do
+      payment_state { "INVALIDE" }
+    end
+
+    initialize_with do
+      builder_class.new({ encoding: "UTF-8" }) do |xml|
+        xml.listepaiement(xmlns: "http://www.cnasea.fr/fichier") do
+          xml.paiement do
+            xml.etatpaiement(payment_state)
+            xml.listeprestadoss do
+              xml.prestadoss do
+                xml.idprestadoss(payment_request.payment.pfmp.reload.asp_prestation_dossier_id)
+              end
+            end
+          end
+        end
+      end.to_xml
+    end
+
+    to_create do |obj|
+      filename = "renvoi_paiement_APLYPROMOCK_#{Time.zone.today.to_fs(:number)}"
+
+      File.write(File.join(WRITE_FOLDER, "#{filename}.xml"), obj)
+    end
   end
 end
