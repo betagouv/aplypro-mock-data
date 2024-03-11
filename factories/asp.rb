@@ -95,7 +95,7 @@ FactoryBot.define do
             xml.etatpaiement(payment_state)
             xml.listeprestadoss do
               xml.prestadoss do
-                xml.idprestadoss(payment_request.payment.pfmp.reload.asp_prestation_dossier_id)
+                xml.idprestadoss(payment_request.pfmp.reload.asp_prestation_dossier_id)
               end
             end
           end
