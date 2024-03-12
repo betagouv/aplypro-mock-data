@@ -36,6 +36,9 @@ GEM
       rack (>= 3.0.0, < 4)
     rack-session (2.0.0)
       rack (>= 3.0.0)
+    rackup (2.1.0)
+      rack (>= 3)
+      webrick (~> 1.8)
     ruby2_keywords (0.0.5)
     sinatra (4.0.0)
       mustermann (~> 3.0)
@@ -52,9 +55,11 @@ GEM
     tilt (2.3.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    webrick (1.8.1)
 
 PLATFORMS
   aarch64-linux
+  arm64-darwin-21
   x86_64-linux
 
 DEPENDENCIES
@@ -62,8 +67,12 @@ DEPENDENCIES
   factory_bot
   faker (~> 2.22.0)
   puma
+  rackup
   sinatra
   sinatra-contrib
+
+RUBY VERSION
+   ruby 3.3.0p0
 
 BUNDLED WITH
    2.5.3
