@@ -73,6 +73,7 @@ FactoryBot.define do
   end
 end
 
+# rubocop:disable Metrics/BlockLength
 FactoryBot.define do
   factory :asp_payment_return, class: "String" do
     transient do
@@ -110,3 +111,4 @@ FactoryBot.define do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength
