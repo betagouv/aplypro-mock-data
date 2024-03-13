@@ -33,10 +33,10 @@ FactoryBot.define do
       raise ArgumentError, "cannot write the final CSV file without a payment_request param" if ctx.payment_request.nil?
 
       request = ctx.payment_request.asp_request
+      identifier = File.basename(request.file.blob.filename.to_s, ".*")
+      filename = FactoryBot.build(:asp_filename, ctx.type, identifier: identifier)
 
-      filename = File.basename(request.file.blob.filename.to_s, ".*")
-
-      File.write(File.join(WRITE_FOLDER, "#{ctx.prefix}#{filename}.csv"), obj)
+      File.write(File.join(WRITE_FOLDER, filename), obj)
     end
   end
 end
@@ -45,7 +45,7 @@ FactoryBot.define do
   factory :asp_reject, parent: :csv_factory do
     transient do
       reason { "mauvais code postal" }
-      prefix { "rejets_integ_idp_" }
+      type { :rejects }
     end
 
     add_attribute("Numéro d'enregistrement") { payment_request.id }
@@ -59,7 +59,7 @@ end
 FactoryBot.define do
   factory :asp_integration, parent: :csv_factory do
     transient do
-      prefix { "identifiants_generes_" }
+      type { :integrations }
     end
 
     add_attribute("Numero enregistrement") { payment_request.id }
@@ -105,10 +105,43 @@ FactoryBot.define do
     end
 
     to_create do |obj|
-      filename = "renvoi_paiement_APLYPROMOCK_#{Time.zone.today.to_fs(:number)}"
+      filename = FactoryBot.build(:asp_filename, :payments)
 
       File.write(File.join(WRITE_FOLDER, "#{filename}.xml"), obj)
     end
   end
 end
+
+FactoryBot.define do
+  factory :asp_filename, class: "String" do
+    transient do
+      identifier { "foobar" }
+    end
+
+    trait :rejects do
+      prefix { "rejets_integ_idp_" }
+      extension { "csv" }
+    end
+
+    trait :integrations do
+      prefix { "identifiants_generes_" }
+      extension { "csv" }
+    end
+
+    trait :payments do
+      prefix { "renvoi_paiement_APLYPROMOCK_#{Time.zone.today.to_fs(:number)}" }
+      extension { "xml" }
+      identifier { "" }
+
+      after(:build) do |_, ctx|
+        raise "the attribute `identifier` does not make sense for an ASP payments filename" if ctx.identifier.present?
+      end
+    end
+
+    initialize_with do
+      "#{prefix}#{identifier}.#{extension}"
+    end
+  end
+end
+
 # rubocop:enable Metrics/BlockLength
