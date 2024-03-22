@@ -21,6 +21,7 @@ FactoryBot.define do
   factory :csv_factory, class: "CSV" do
     transient do
       payment_request { nil }
+      destination { WRITE_FOLDER }
     end
 
     initialize_with do
@@ -36,7 +37,7 @@ FactoryBot.define do
       identifier = File.basename(request.file.blob.filename.to_s, ".*")
       filename = FactoryBot.build(:asp_filename, ctx.type, identifier: identifier)
 
-      File.write(File.join(WRITE_FOLDER, filename), obj)
+      File.write(File.join(ctx.destination, filename), obj)
     end
   end
 end
@@ -79,6 +80,7 @@ FactoryBot.define do
     transient do
       builder_class { Nokogiri::XML::Builder }
       payment_request { nil }
+      destination { WRITE_FOLDER }
     end
 
     trait :success do
@@ -104,10 +106,10 @@ FactoryBot.define do
       end.to_xml
     end
 
-    to_create do |obj|
+    to_create do |obj, ctx|
       filename = FactoryBot.build(:asp_filename, :payments)
 
-      File.write(File.join(WRITE_FOLDER, "#{filename}.xml"), obj)
+      File.write(File.join(ctx.destination, "#{filename}.xml"), obj)
     end
   end
 end
