@@ -92,6 +92,8 @@ FactoryBot.define do
     end
 
     initialize_with do
+      raise ArgumentError, "the payment request is not integrated" if !payment_request.in_state?(:integrated)
+
       builder_class.new({ encoding: "UTF-8" }) do |xml|
         xml.listepaiement(xmlns: "http://www.cnasea.fr/fichier") do
           xml.paiement do
