@@ -6,6 +6,8 @@ require "factory_bot"
 require "faker"
 require "ostruct"
 
+# API are just too verbose
+# rubocop:disable Metrics/BlockLength
 FactoryBot.define do
   factory :sygne_student, parent: :api_student do
     ine { ine_value }
@@ -41,6 +43,13 @@ end
 
 FactoryBot.define do
   factory :sygne_student_info, parent: :api_student do
+    transient do
+      status_code { "ST" }
+      uai { "code UAI" }
+      classe_label { "TLE PRO" }
+      mef { "24720008310" }
+    end
+
     ine { ine_value }
     codeSexe { biological_sex }
     prenom1 { first_name }
@@ -62,5 +71,18 @@ FactoryBot.define do
     end
     inseeCommuneNaissance { birthplace_city_insee_code }
     inseePaysNaissance { birthplace_country_insee_code }
+    scolarite do
+      {
+        "classe" => classe_label,
+        "codeStatut" => status_code,
+        "codeMefRatt" => mef,
+        "codeUai" => uai
+      }
+    end
+
+    trait :apprentice do
+      status_code { "AP" }
+    end
   end
 end
+# rubocop:enable Metrics/BlockLength
