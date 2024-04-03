@@ -25,7 +25,7 @@ FactoryBot.define do
     end
     sectionReference do
       {
-        "codeMef" => "27621407320"
+        "codeMef" => mef_value
       }
     end
 
@@ -73,6 +73,7 @@ FactoryBot.define do
     transient do
       left_at { nil }
       left_classe_at { nil }
+      mef_value { "27121010210" }
 
       # @emaildoc:
       #   Voici le dictionnaire des valeurs possibles pour ce statut de l'apprenant:

@@ -15,6 +15,7 @@ FactoryBot.define do
   factory :api_student, parent: :json_factory do
     transient do
       ine_value { Faker::Alphanumeric.alphanumeric(number: 10).upcase }
+      mef_value { "00" }
       biological_sex { %w[1 2].sample }
       first_name { Faker::Name.first_name }
       last_name { Faker::Name.last_name }

@@ -17,7 +17,7 @@ FactoryBot.define do
     codeSexe { biological_sex }
     niveau { "2212" }
     codeMef { "24720008ABC" }
-    codeMefRatt { mef }
+    codeMefRatt { mef_value }
     libelleNiveau { %w[2NDE 1ERE].sample }
     classe { %w[2NDE6 1EREB 1EREA].sample }
     codeRegime { "" }
@@ -32,11 +32,11 @@ FactoryBot.define do
     end
 
     transient do
-      mef { "24720008310" }
+      mef_value { "22124210110" }
     end
 
     trait :irrelevant do
-      mef { "123123" }
+      mef_value { "123123" }
     end
   end
 end
@@ -47,7 +47,6 @@ FactoryBot.define do
       status_code { "ST" }
       uai { "code UAI" }
       classe_label { "TLE PRO" }
-      mef { "24720008310" }
     end
 
     ine { ine_value }
@@ -75,7 +74,7 @@ FactoryBot.define do
       {
         "classe" => classe_label,
         "codeStatut" => status_code,
-        "codeMefRatt" => mef,
+        "codeMefRatt" => mef_value,
         "codeUai" => uai
       }
     end
