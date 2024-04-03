@@ -12,6 +12,11 @@ FactoryBot.define do
     id { Faker::Number.number }
     dateSortieEtablissement { left_at&.to_date }
     dateSortieFormation { left_classe_at&.to_date }
+    statutApprenant do
+      {
+        "code" => status_code
+      }
+    end
 
     division do
       {
@@ -23,6 +28,7 @@ FactoryBot.define do
         "codeMef" => "27621407320"
       }
     end
+
     apprenant do
       {
         "prenomUsuel" => first_name,
@@ -60,9 +66,26 @@ FactoryBot.define do
       end
     end
 
+    trait :apprentice do
+      status_code { "2503" }
+    end
+
     transient do
       left_at { nil }
       left_classe_at { nil }
+
+      # @emaildoc:
+      #   Voici le dictionnaire des valeurs possibles pour ce statut de l'apprenant:
+      #
+      #   id      code           libelleCourt    libelleLong
+      #   1        "0000"        "Etudiant"      "Etudiant"
+      #   2        "2501"        "Elève"         "Elève"
+      #   3        "2502"        "Adulte"        "Adulte"
+      #   4        "2503"        "Apprenti"      "Apprenti"
+      #   5        "2504"        "FAD"           "Formation à distance"
+      #   6        "2505"        "Non scolarisé" "Non scolarisé"
+      #   7        "2506"        "VAE"           "Validation des acquis d'expérience"
+      status_code { "2501" }
 
       classe_label do
         [
