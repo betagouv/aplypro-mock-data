@@ -76,7 +76,7 @@ end
 
 # rubocop:disable Metrics/BlockLength
 FactoryBot.define do
-  factory :asp_payment_return, class: "String" do
+  factory :asp_payment_file, class: "String" do
     transient do
       builder_class { Nokogiri::XML::Builder }
       payment_request { nil }
