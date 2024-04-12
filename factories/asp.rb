@@ -89,6 +89,10 @@ FactoryBot.define do
 
     trait :failed do
       payment_state { "INVALIDE" }
+
+      transient do
+        reason { Faker::Lorem.sentence(word_count: 20) }
+      end
     end
 
     initialize_with do
@@ -102,6 +106,11 @@ FactoryBot.define do
               xml.prestadoss do
                 xml.idprestadoss(payment_request.pfmp.reload.asp_prestation_dossier_id)
               end
+            end
+
+            if payment_state == "INVALIDE"
+              xml.codemotifinval("IAL")
+              xml.libellemotifinval(reason)
             end
           end
         end
