@@ -11,6 +11,7 @@ FactoryBot.define do
   end
 end
 
+# rubocop:disable Metrics/BlockLength
 FactoryBot.define do
   factory :api_student, parent: :json_factory do
     transient do
@@ -52,6 +53,7 @@ FactoryBot.define do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength
 
 require_relative "sygne"
 require_relative "fregata"
