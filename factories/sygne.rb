@@ -82,6 +82,14 @@ FactoryBot.define do
     trait :apprentice do
       status_code { "AP" }
     end
+
+    trait :french_address do
+      address_country_code { 100 }
+    end
+
+    trait :foreign_address do
+      address_country_code { 109 } # guten tag
+    end
   end
 end
 # rubocop:enable Metrics/BlockLength

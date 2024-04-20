@@ -42,6 +42,14 @@ FactoryBot.define do
     trait :female do
       biological_sex { "2" }
     end
+
+    trait :french_address do
+      address_country_code { 99_100 }
+    end
+
+    trait :foreign_address do
+      address_country_code { 99_109 } # guten tag
+    end
   end
 end
 
