@@ -1,5 +1,5 @@
 FROM ruby:3.3-slim
-
+# comment
 EXPOSE 3002
 
 RUN apt-get update && apt-get upgrade -y && apt-get install --no-install-recommends -y build-essential
