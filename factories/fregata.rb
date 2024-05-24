@@ -10,6 +10,8 @@ require "ostruct"
 FactoryBot.define do
   factory :fregata_student, parent: :api_student do
     id { Faker::Number.number }
+    dateEntreeEtablissement { Date.new(2020, 1, 1).to_s }
+    dateEntreeFormation { Date.new(2020, 1, 1).to_s }
     dateSortieEtablissement { left_at&.to_date }
     dateSortieFormation { left_classe_at&.to_date }
     statutApprenant do

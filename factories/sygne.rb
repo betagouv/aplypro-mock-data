@@ -47,6 +47,7 @@ FactoryBot.define do
       status_code { "ST" }
       uai { "code UAI" }
       classe_label { "TLE PRO" }
+      start_date { Date.new(2020, 1, 1).to_s }
     end
 
     ine { ine_value }
@@ -75,7 +76,8 @@ FactoryBot.define do
         "classe" => classe_label,
         "codeStatut" => status_code,
         "codeMefRatt" => mef_value,
-        "codeUai" => uai
+        "codeUai" => uai,
+        "dateDebSco" => start_date
       }
     end
 
