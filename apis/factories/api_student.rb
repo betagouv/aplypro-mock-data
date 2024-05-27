@@ -2,6 +2,8 @@
 
 require "faker"
 require "json"
+require "active_support"
+require "active_support/core_ext/integer/time"
 
 Faker::Config.locale = :fr
 
@@ -54,6 +56,3 @@ FactoryBot.define do
   end
 end
 # rubocop:enable Metrics/BlockLength
-
-require_relative "sygne"
-require_relative "fregata"
