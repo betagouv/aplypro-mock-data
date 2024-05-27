@@ -13,12 +13,16 @@ module Apis
     register Sinatra::Namespace
 
     namespace "/sygne" do
-      get "/etablissements/*/eleves" do |uai|
-        json FactoryBot.build_list(:sygne_student, 20, codeUai: uai)
+      get "/etablissements/:uai/eleves" do
+        json FactoryBot.build_list(:sygne_student, 20, codeUai: params["uai"])
       end
 
-      get "/eleves/*" do |ine|
-        json FactoryBot.build(:sygne_student_info, ine_value: ine)
+      get "/eleves/:ine" do
+        json FactoryBot.build(:sygne_student_info, ine_value: params["ine"])
+      end
+
+      get "/eleves/:ine/scolarites" do
+        json FactoryBot.build(:sygne_student_schoolings, ine_value: params["ine"])
       end
 
       post "/token" do
