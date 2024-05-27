@@ -4,7 +4,8 @@ require "active_support"
 require "active_support/core_ext/integer/time"
 require "factory_bot"
 require "faker"
-require "ostruct"
+
+require_relative "../api_student"
 
 # rubocop:disable Metrics/BlockLength
 FactoryBot.define do
