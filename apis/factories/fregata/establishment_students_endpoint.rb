@@ -11,6 +11,8 @@ require_relative "../api_student"
 FactoryBot.define do
   factory :fregata_student, parent: :api_student do
     id { Faker::Number.number }
+    dateEntreeEtablissement { 10.days.ago.to_date }
+    dateEntreeFormation { 2.days.ago.to_date }
     dateSortieEtablissement { left_at&.to_date }
     dateSortieFormation { left_classe_at&.to_date }
     statutApprenant do
