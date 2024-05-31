@@ -5,6 +5,7 @@ require "active_support/core_ext/integer/time"
 require "factory_bot"
 require "faker"
 
+# rubocop:disable Metrics/BlockLength
 FactoryBot.define do
   factory :sygne_schooling_data, parent: :json_factory do
     transient do
@@ -29,6 +30,10 @@ FactoryBot.define do
     end
   end
 
+  trait :apprentice do
+    status_code { "AP" }
+  end
+
   factory :sygne_student_schoolings, parent: :api_student do
     ine { ine_value }
 
@@ -39,3 +44,4 @@ FactoryBot.define do
     add_attribute("scolarites") { schoolings }
   end
 end
+# rubocop:enable Metrics/BlockLength
