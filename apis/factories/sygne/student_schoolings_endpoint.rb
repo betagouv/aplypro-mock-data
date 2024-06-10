@@ -9,12 +9,12 @@ require "faker"
 FactoryBot.define do
   factory :sygne_schooling_data, parent: :json_factory do
     transient do
-      start_date { 2.days.ago }
-      end_date { 3.days.from_now }
+      start_date { "2025-05-25" }
+      end_date { "2025-05-25" }
       classe_label { "2NDE TEST SCOLARITÉ" }
       uai { "code UAI" }
       mef_code { "code MEF" }
-      school_year { Date.current.year }
+      school_year { SchoolYear.current.start_year }
       status_code { "ST" }
     end
 
