@@ -29,7 +29,7 @@ FactoryBot.define do
     sectionReference do
       {
         "codeMef" => mef_value,
-        "anneeScolaireId" => 27
+        "anneeScolaireId" => 28
       }
     end
 
