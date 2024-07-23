@@ -64,11 +64,11 @@ FactoryBot.define do
     end
 
     add_attribute("Numero enregistrement") { payment_request.id }
-    add_attribute("idIndDoss") { Faker::Number.number(digits: 5).to_s }
+    add_attribute("idIndDoss") { Faker::Number.unique.number(digits: 5).to_s }
     add_attribute("idIndTiers") { Faker::Number.number(digits: 5).to_s }
-    add_attribute("idDoss") { Faker::Number.number(digits: 5).to_s }
+    add_attribute("idDoss") { Faker::Number.unique.number(digits: 5).to_s }
     add_attribute("numAdmDoss") { "DOSS" }
-    add_attribute("idPretaDoss") { Faker::Number.number(digits: 5).to_s }
+    add_attribute("idPretaDoss") { Faker::Number.unique.number(digits: 5).to_s }
     add_attribute("numAdmPrestaDoss") { Faker::Number.number(digits: 5).to_s }
     add_attribute("idIndPrestaDoss") { Faker::Number.number(digits: 5).to_s }
   end
