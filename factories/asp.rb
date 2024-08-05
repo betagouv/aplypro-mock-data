@@ -126,6 +126,57 @@ FactoryBot.define do
 end
 
 FactoryBot.define do
+  factory :asp_rectifications_file, class: "String" do
+    transient do
+      builder_class { Nokogiri::XML::Builder }
+      payment_request { nil }
+      destination { WRITE_FOLDER }
+    end
+
+    trait :success do
+      payment_state { "EMIS" }
+    end
+
+    trait :failed do
+      payment_state { "INVALIDE" }
+
+      transient do
+        reason { Faker::Lorem.sentence(word_count: 20) }
+      end
+    end
+
+    initialize_with do
+      raise ArgumentError, "the payment request is not integrated" if !payment_request.in_state?(:integrated)
+
+      builder_class.new({ encoding: "UTF-8" }) do |xml|
+        xml.listeor(xmlns: "http://www.cnasea.fr/fichier") do
+          xml.ordrereversement do
+            xml.etatpaiement(payment_state)
+            xml.listeprestadoss do
+              xml.prestadoss do
+                xml.idprestadoss(payment_request.pfmp.reload.asp_prestation_dossier_id)
+              end
+            end
+
+            if payment_state == "INVALIDE"
+              xml.codemotifor("C1") # Décès (cf RefMotifOR)
+              xml.libellemotifor(reason)
+            end
+          end
+        end
+      end.to_xml
+    end
+
+    to_create do |obj, ctx|
+      filename = FactoryBot.build(:asp_filename, :rectifications)
+
+      File.write(File.join(ctx.destination, "#{filename}.xml"), obj)
+    end
+  end
+end
+
+
+FactoryBot.define do
   factory :asp_filename, class: "String" do
     transient do
       identifier { "foobar" }
@@ -148,6 +199,16 @@ FactoryBot.define do
 
       after(:build) do |_, ctx|
         raise "the attribute `identifier` does not make sense for an ASP payments filename" if ctx.identifier.present?
+      end
+    end
+
+    trait :rectifications do
+      prefix { "renvoi_ordrereversement_APLYPROMOCK_#{Time.zone.today.to_fs(:number)}" }
+      extension { "xml" }
+      identifier { "" }
+
+      after(:build) do |_, ctx|
+        raise "the attribute `identifier` does not make sense for an ASP rectifications filename" if ctx.identifier.present?
       end
     end
 
