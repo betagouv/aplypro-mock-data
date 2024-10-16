@@ -10,5 +10,3 @@ RUN bundle install
 
 WORKDIR /app
 COPY . .
-
-CMD ["ruby", "server.rb"]
