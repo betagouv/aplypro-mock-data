@@ -15,9 +15,13 @@ FactoryBot.define do
     codeMef { "24720008ABC" }
     codeMefRatt { mef_value }
     libelleNiveau { %w[2NDE 1ERE].sample }
+    libelleLongStatut { "SCOLAIRE" }
     classe { %w[2NDE6 1EREB 1EREA].sample }
     codeRegime { "" }
     codeUai { "uai" }
+    dateDebSco { "2024-09-02" }
+    codeStatut { "ST" }
+    adhesionTransport { false }
 
     trait :left_establishment do
       classe { nil }
