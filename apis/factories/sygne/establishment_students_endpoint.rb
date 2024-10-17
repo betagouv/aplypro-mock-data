@@ -27,6 +27,10 @@ FactoryBot.define do
       classe { nil }
     end
 
+    trait :closed do
+      add_attribute("dateFinSco") { "2024-10-02" }
+    end
+
     trait :changed_class do
       classe { "NOUVELLE CLASSE #{rand}" }
     end
