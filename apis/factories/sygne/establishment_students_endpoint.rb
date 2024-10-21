@@ -19,6 +19,7 @@ FactoryBot.define do
     classe { %w[2NDE6 1EREB 1EREA].sample }
     codeRegime { "" }
     codeUai { "uai" }
+    anneeScolaire { "2024" }
     dateDebSco { "2024-09-02" }
     codeStatut { "ST" }
     adhesionTransport { false }
