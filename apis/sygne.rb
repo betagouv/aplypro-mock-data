@@ -8,6 +8,10 @@ require_relative "factories/sygne"
 
 module Apis
   class Sygne < Sinatra::Base
+    configure do
+      disable :protection
+    end
+
     set :strict_paths, false
 
     register Sinatra::Namespace
