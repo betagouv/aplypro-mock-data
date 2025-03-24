@@ -11,4 +11,4 @@ RUN bundle install
 WORKDIR /app
 COPY . .
 
-CMD ["ruby", "server.rb"]
+CMD ["rackup", "-p", "3002", "-o", "0.0.0.0"]
