@@ -92,6 +92,7 @@ FactoryBot.define do
 
       transient do
         reason { Faker::Lorem.sentence(word_count: 20) }
+        code_motif { "IAL" }
       end
     end
 
@@ -109,7 +110,7 @@ FactoryBot.define do
             end
 
             if payment_state == "INVALIDE"
-              xml.codemotifinval("IAL")
+              xml.codemotifinval(code_motif)
               xml.libellemotifinval(reason)
             end
           end
