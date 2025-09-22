@@ -12,8 +12,8 @@ FactoryBot.define do
   factory :fregata_student, parent: :api_student do
     id { Faker::Number.number }
     estEN { false }
-    dateEntreeEtablissement { "2024-09-02" }
-    dateEntreeFormation { "2024-09-10" }
+    dateEntreeEtablissement { "2025-09-02" }
+    dateEntreeFormation { "2025-09-10" }
     dateSortieEtablissement { left_at&.to_date }
     dateSortieFormation { left_classe_at&.to_date }
     statutApprenant do

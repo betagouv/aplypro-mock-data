@@ -29,7 +29,7 @@ FactoryBot.define do
     end
 
     trait :closed do
-      add_attribute("dateFinSco") { "2024-10-02" }
+      add_attribute("dateFinSco") { "2025-10-02" }
     end
 
     trait :changed_class do
