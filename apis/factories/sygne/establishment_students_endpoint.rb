@@ -19,8 +19,8 @@ FactoryBot.define do
     classe { %w[2NDE6 1EREB 1EREA].sample }
     codeRegime { "" }
     codeUai { "uai" }
-    anneeScolaire { "2025" }
-    dateDebSco { "2025-09-02" }
+    anneeScolaire { "2026" }
+    dateDebSco { "2026-09-02" }
     codeStatut { "ST" }
     adhesionTransport { false }
 
@@ -29,7 +29,7 @@ FactoryBot.define do
     end
 
     trait :closed do
-      add_attribute("dateFinSco") { "2025-10-02" }
+      add_attribute("dateFinSco") { "2026-10-02" }
     end
 
     trait :changed_class do
@@ -37,7 +37,7 @@ FactoryBot.define do
     end
 
     transient do
-      mef_value { "22124210110" }
+      mef_value { "24020101110" }
     end
 
     trait :irrelevant do
