@@ -4,7 +4,6 @@ require "active_support"
 require "active_support/core_ext/integer/time"
 require "factory_bot"
 require "faker"
-require "ostruct"
 
 # API are just too verbose
 # rubocop:disable Metrics/BlockLength
